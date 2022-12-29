@@ -28,6 +28,8 @@ app.use('/api/categories', categoriesRoute)
 app.use('/api/link', clientOrder)
 
 
+console.log('dff')
+
 async function start() {
 	try {
 		await mongoose.set("strictQuery", false)
