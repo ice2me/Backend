@@ -24,6 +24,7 @@ export const register = async (
 		const isEmail = await User.findOne({email})
 		const isPhone = await User.findOne({phone})
 		const isShopName = await User.findOne({shop_name})
+
 		if (isUsed) {
 			return res.json({
 				error: {
@@ -79,7 +80,8 @@ export const register = async (
 			shop_name,
 			description,
 			shop_link,
-			socials_links
+			socials_links,
+			paid_subscription: false
 		})
 //jwt add
 		const token = jwt.sign({
@@ -89,7 +91,7 @@ export const register = async (
 		)
 
 		await newUser.save()
-		console.log('newUser', newUser)
+
 		res.json({
 			token,
 			newUser,

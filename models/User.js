@@ -47,6 +47,10 @@ const UserSchema = new mongoose.Schema(
 			min: 3,
 			max: 65
 		},
+		paid_subscription: {
+			type: Boolean,
+			require: false,
+		},
 		socials_links: {
 			type: Object,
 			require: false,

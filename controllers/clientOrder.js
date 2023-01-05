@@ -13,9 +13,12 @@ export const getCategoriesForLink = async (req,
 			}))
 		const categories = categoriesTeh.reverse()
 
-		res.json({shop: shop, categories: categories})
+		res.json({
+			shop: shop,
+			categories: categories
+		})
 	} catch (e) {
-		res.json(200, {error: {message: 'Error for download category'}})
+		res.json({error: {message: 'Error for download category'}})
 	}
 }
 export const getProductClient = async (req,
@@ -43,28 +46,31 @@ export const getProductClient = async (req,
 export const postBasketFormClient = async (req,
 	res) => {
 	try {
-
 		const {
 			shop_id,
 			shop_email,
 			phone,
 			username,
-			items
+			items,
+			shop_name
 
 		} = req.body
 
 		const shop = !!await User.findById(shop_id)
+		const totalAmount = items?.map(item => item?.total_price).reduce((prevValue, curValue) => prevValue + curValue, 0)
 
 		if (shop) {
 			nodeMailer({
 				shop_email,
-				items
+				items,
+				phone,
+				username,
+				totalAmount,
+				shop_name
 			})
-			res.json({
-				shop: shop
-			})
-		}
 
+			res.json({message: 'Your order has been transferred to the seller, he will contact you shortly.'})
+		}
 	} catch (e) {
 		res.json({error: {message: 'Error send form'}})
 	}

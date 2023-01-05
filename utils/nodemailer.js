@@ -1,54 +1,83 @@
 import nodemailer from 'nodemailer'
 
-export const nodeMailer = ({
-	email,
-	order
-}) => {
+export const nodeMailer = (
+	{
+		shop_email,
+		items,
+		phone,
+		username,
+		totalAmount,
+		shop_name
+	}
+) => {
 	async function main() {
-		// Generate test SMTP service account from ethereal.email
-		// Only needed if you don't have a real mail account for testing
-		let testAccount = await nodemailer.createTestAccount()
-
-		// create reusable transporter object using the default SMTP transport
 		let transporter = nodemailer.createTransport({
-			host: "smtp.ethereal.email",
+			host: "smtp.gmail.com",
 			port: 587,
 			secure: false, // true for 465, false for other ports
 			auth: {
-				user: testAccount.user, // generated ethereal user
-				pass: testAccount.pass, // generated ethereal password
+				user: 'ice2me1989dev@gmail.com', // generated ethereal user
+				pass: 'ayrvhzbvenjwkgbp', // generated ethereal password
 			},
 		})
-
-		// send mail with defined transport object
+		console.log(shop_email)
 		let info = await transporter.sendMail({
-				from: '"Fred Foo 👻" <ice2me1989dev.gmail.com>', // sender address
-				// to: {email}, // list of receivers
-				to: 'ice2me1989.gmail.com', // list of receivers
-				subject: "Order", // Subject line
-				text: "Order client", // plain text body
-				html: order?.map(order => (`<p>
-						<p>${email}</p>
-						<img
-							src=${order?.image_product}
-							alt="image"
-						/>
-						<h3>${order?.name_product}</h3>
-						<p>${order?.description_product}</p>
-						<span> Price: <b> ${order?.price_product} ${order?.currency_product}</b></span>
-						<span>Unit product: <b>${order?.unit_product}</b></span>
-						<span>Total Price: <b>${order?.price_product} ${order?.currency_product}</b></span>
-					</p>`
-				)), // html body
+				from: 'ice2me1989dev@gmail.com',
+				to: `${shop_email}`, //получатель
+				subject: "Order",
+				text: "Order client",
+				html: `
+				<h1>Order for ${shop_name}</h1>
+				<h2>Client contact <br>
+					Name: ${username} <br>
+					Phone: ${phone} <br>
+				</h2>
+				<table style="font-size: 14px;">
+					${items?.map(item => (
+								`
+									<tr>
+										<th style='width: 100px; white-space: nowrap; padding: 0 10px; text-align: left; background-color: coral'>
+											Name product: 
+										</th>
+										<td style='width: 250px; padding: 0 10px; background-color: limegreen'>
+											${item?.name_product}
+										</td>
+									</tr>
+									<tr>
+										<th style='width: 100px; white-space: nowrap; padding: 0 10px; text-align: left; background-color: coral'>
+											Price: 
+										</th>
+										<td style='width: 250px; padding: 0 10px; background-color: limegreen'>
+											 ${item?.price_product} ${item?.currency_product}
+										</td>
+									</tr>
+									<tr>
+										<th style='width: 100px; white-space: nowrap; padding: 0 10px; text-align: left; background-color: coral'>
+											Unit product:  
+										</th>
+										<td style='width: 250px; padding: 0 10px; background-color: limegreen'>
+											${item?.count} ${item?.unit_product}
+										</td>
+									</tr>
+									<tr>
+										<th style='width: 100px; white-space: nowrap; padding: 0 10px; text-align: left; background-color: coral'>
+											Total Price:  
+										</th>
+										<td style='width: 250px; padding: 0 10px; background-color: limegreen'>
+											${item?.total_price} ${item?.currency_product}
+										</td>
+									</tr>
+								`
+							))}
+				</table>
+				<h3>Total Amount: ${totalAmount}</h3>
+				`
 			})
-		;
 
-		console.log("Message sent: %s", info.messageId);
-		// Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+		console.log("Message sent: %s", info.messageId)
 
-		// Preview only available when sending through an Ethereal account
-		console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-		// Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
+		console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info))
+		nodemailer.getTestMessageUrl(info)
 	}
 
 	main().catch(console.error)

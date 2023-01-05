@@ -5,8 +5,6 @@ import dotenv from 'dotenv'
 
 import authRoute from './routes/auth.js'
 import categoriesRoute from './routes/categories.js'
-import fileUpload from 'express-fileupload'
-import bodyParser from 'body-parser'
 import clientOrder from "./routes/clientOrder.js"
 
 
@@ -18,11 +16,6 @@ app.use(cors())
 dotenv.config()
 app.use(express.json())
 app.use(json({ limit: '50mb' }))
-app.use(bodyParser.json({limit: '10000kb', extended: true}))
-app.use(bodyParser.urlencoded({limit: '10000kb', extended: true}))
-app.use(fileUpload({}))
-//Routes
-//http://localhost:5000
 app.use('/api/auth', authRoute)
 app.use('/api/categories', categoriesRoute)
 app.use('/api/link', clientOrder)
