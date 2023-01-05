@@ -12,17 +12,17 @@ export const nodeMailer = (
 ) => {
 	async function main() {
 		let transporter = nodemailer.createTransport({
-			host: "smtp.gmail.com",
-			port: 587,
+			host: process.env.EMAIL_HOST,
+			port: process.env.EMAIL_PORT,
 			secure: false, // true for 465, false for other ports
 			auth: {
-				user: 'ice2me1989dev@gmail.com', // generated ethereal user
-				pass: 'ayrvhzbvenjwkgbp', // generated ethereal password
+				user: process.env.EMAIL_MY, // generated ethereal user
+				pass:  process.env.EMAIL_PASS, // generated ethereal password
 			},
 		})
 		console.log(shop_email)
 		let info = await transporter.sendMail({
-				from: 'ice2me1989dev@gmail.com',
+				from: process.env.EMAIL_MY,
 				to: `${shop_email}`, //получатель
 				subject: "Order",
 				text: "Order client",
