@@ -20,7 +20,6 @@ export const nodeMailer = (
 				pass:  process.env.EMAIL_PASS, // generated ethereal password
 			},
 		})
-		console.log(shop_email)
 		let info = await transporter.sendMail({
 				from: process.env.EMAIL_MY,
 				to: `${shop_email}`, //получатель
