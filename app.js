@@ -27,7 +27,8 @@ async function start() {
 		await mongoose.connect(process.env.DB_URL)
 		app.listen(PORT, () => console.log('server started ' + PORT))
 	} catch (e) {
-		console.log(e)
+		console.log("Server error:", e.message)
+		process.exit(1)
 	}
 }
 
