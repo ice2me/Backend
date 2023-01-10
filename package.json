@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "nodemon app.js",
-    "build": "ng build",
-    "heroku-postbuild": "ng build --prod"
+    "heroku-postbuild": "--dev"
   },
   "keywords": [],
   "author": "",
