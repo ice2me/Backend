@@ -20,6 +20,8 @@ index.use('/api/auth', authRoute)
 index.use('/api/categories', categoriesRoute)
 index.use('/api/link', clientOrder)
 
+
+
 async function start() {
 	try {
 		await mongoose.set("strictQuery", false)
