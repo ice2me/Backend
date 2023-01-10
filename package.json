@@ -4,7 +4,9 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "dev": "nodemon app.js"
+    "start": "nodemon app.js",
+    "build": "ng build",
+    "heroku-postbuild": "ng build --prod"
   },
   "keywords": [],
   "author": "",
