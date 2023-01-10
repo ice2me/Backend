@@ -19,9 +19,6 @@ app.use(json({ limit: '50mb' }))
 app.use('/api/auth', authRoute)
 app.use('/api/categories', categoriesRoute)
 app.use('/api/link', clientOrder)
-app.use(express.static('server'))
-
-
 
 async function start() {
 	try {
