@@ -4,10 +4,11 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon app.js",
-    "heroku-postbuild": "--dev"
+    "start": "nodemon app.js"
   },
-  "keywords": [],
+  "keywords": [
+    "heroku"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
