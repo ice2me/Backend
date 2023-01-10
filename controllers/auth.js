@@ -81,7 +81,8 @@ export const register = async (
 			description,
 			shop_link,
 			socials_links,
-			paid_subscription: false
+			paid_subscription: false,
+			paid_date: new Date()
 		})
 //jwt add
 		const token = jwt.sign({

@@ -49,7 +49,11 @@ const UserSchema = new mongoose.Schema(
 		},
 		paid_subscription: {
 			type: Boolean,
-			require: false,
+			require: true,
+		},
+		paid_date: {
+			type: String,
+			require: true,
 		},
 		socials_links: {
 			type: Object,

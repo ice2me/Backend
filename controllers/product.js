@@ -1,7 +1,5 @@
 import Categories from "../models/Categories.js"
 import Products from "../models/Products.js"
-import User from "../models/User.js"
-import { nodeMailer } from "../utils/nodemailer.js"
 
 
 export const createProduct = async (req,
