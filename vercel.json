@@ -12,7 +12,7 @@
 			"dest": "/"
 		},
 		{
-			"src": "/api/auth",
+			"src": "/api/auth/register",
 			"dest": "../controllers/auth.js"
 		}
 	]
