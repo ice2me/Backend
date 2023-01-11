@@ -2,7 +2,6 @@
 import User from "../models/User.js"
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import Categories from "../models/Categories.js";
 import Products from "../models/Products.js";
 
 export const register = async (
