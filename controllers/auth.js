@@ -114,7 +114,9 @@ export const updateUser = async (
 			image_logo,
 			description,
 			shop_link,
-			socials_links
+			socials_links,
+			paid_subscription,
+			paid_date
 		} = req.body
 
 		const isUser = await User.findById(id)
@@ -125,6 +127,8 @@ export const updateUser = async (
 		isUser.image_logo = image_logo
 		isUser.description = description
 		isUser.shop_link = shop_link
+		isUser.paid_subscription = paid_subscription
+		isUser.socials_links = paid_date
 		isUser.socials_links = {...socials_links}
 
 		await isUser.save()
