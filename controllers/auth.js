@@ -128,7 +128,7 @@ export const updateUser = async (
 		isUser.description = description
 		isUser.shop_link = shop_link
 		isUser.paid_subscription = paid_subscription
-		isUser.paid_date = paid_date
+		isUser.socials_links = paid_date
 		isUser.socials_links = {...socials_links}
 
 		await isUser.save()

@@ -19,6 +19,7 @@ index.use(json({ limit: '50mb' }))
 index.use('/api/auth', authRoute)
 index.use('/api/categories', categoriesRoute)
 index.use('/api/link', clientOrder)
+
 async function start() {
 	try {
 		await mongoose.set("strictQuery", false)
@@ -29,5 +30,4 @@ async function start() {
 	}
 }
 
-console.log("start")
 start()
