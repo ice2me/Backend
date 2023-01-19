@@ -5,7 +5,7 @@ import {
 	deleteCategory,
 	getCategories,
 	updateCategoryName,
-} from "../controllers/Categories.js"
+} from "../controllers/categories.js"
 import {
 	createProduct,
 	deleteProduct,

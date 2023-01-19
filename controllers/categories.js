@@ -1,6 +1,6 @@
-import Categories from "../models/Categories.js";
-import User from "../models/User.js";
-import Products from "../models/Products.js";
+import Categories from "../models/Categories.js"
+import User from "../models/User.js"
+import Products from "../models/Products.js"
 
 export const createCategories = async (req,
 	res) => {
