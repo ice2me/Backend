@@ -6,19 +6,25 @@ import { nodeMailer } from "../utils/nodemailer.js"
 export const getCategoriesForLink = async (req,
 	res) => {
 	try {
-		const shop = await User.find({shop_name: req.params.link})
+		const shop = await User.findOne({shop_name: req.params.link})
 		const categoriesTeh = await Promise.all(
-			shop[0].categories.map((categories) => {
+			shop.categories.map((categories) => {
 				return Categories.findById(categories._id)
 			}))
 		const categories = categoriesTeh.reverse()
+		if (shop) {
+			res.json({
+				shop: shop,
+				categories: categories
+			})
+		} else {
+			res.redirect('/')
+		}
 
-		res.json({
-			shop: shop,
-			categories: categories
-		})
 	} catch (e) {
-		res.json({error: {message: 'Error for download category'}})
+		// res.json({data: {error: {message: 'Error for download category'}}})
+		res.json({shop: null})
+		// res.redirect('/')
 	}
 }
 export const getProductClient = async (req,
@@ -41,6 +47,28 @@ export const getProductClient = async (req,
 		})
 	} catch (e) {
 		res.json({error: {message: 'Error download products'}})
+	}
+}
+export const getAllShops = async (req,
+	res) => {
+	try {
+		const allShops = await User.find()
+
+		const list = allShops.map(item => {
+			const newArr = new Object()
+			newArr.shop_name = item.shop_name
+			newArr.description = item.description
+			newArr.image_logo = item.image_logo
+			return newArr
+		})
+		const arr = [...list]
+
+		res.json({
+			arrShopsList: arr
+		})
+
+	} catch (e) {
+		res.json({error: {message: 'Error download shops list'}})
 	}
 }
 export const postBasketFormClient = async (req,

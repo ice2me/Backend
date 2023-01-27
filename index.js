@@ -2,11 +2,9 @@ import express, { json } from 'express'
 import mongoose from "mongoose"
 import cors from 'cors'
 import dotenv from 'dotenv'
-
 import authRoute from './routes/auth.js'
 import categoriesRoute from './routes/categories.js'
 import clientOrder from "./routes/clientOrder.js"
-
 
 const PORT = process.env.PORT || 8080
 
@@ -18,7 +16,8 @@ index.use(express.json())
 index.use(json({ limit: '50mb' }))
 index.use('/api/auth', authRoute)
 index.use('/api/categories', categoriesRoute)
-index.use('/api/link', clientOrder)
+// index.use('/api/link', clientOrder)
+index.use('/', clientOrder)
 
 async function start() {
 	try {
@@ -29,5 +28,4 @@ async function start() {
 		console.log(e)
 	}
 }
-
 start()
