@@ -17,7 +17,8 @@ export const register = async (
 			shop_name,
 			description,
 			shop_link,
-			socials_links
+			socials_links,
+			open_shop
 		} = req.body
 		const isUsed = await User.findOne({username})
 		const isEmail = await User.findOne({email})
@@ -81,7 +82,19 @@ export const register = async (
 			shop_link,
 			socials_links,
 			paid_subscription: false,
-			paid_date: new Date()
+			paid_date: new Date(),
+			style_shop: {
+				text_color: "",
+				background_color: "",
+			},
+			pay_package: "Standart",
+			open_shop,
+			qr_code: {
+				text_color: "",
+				background_color: "",
+				typeQr: ""
+			}
+
 		})
 //jwt add
 		const token = jwt.sign({
@@ -116,7 +129,11 @@ export const updateUser = async (
 			shop_link,
 			socials_links,
 			paid_subscription,
-			paid_date
+			paid_date,
+			pay_package,
+			style_shop,
+			open_shop,
+			qr_code,
 		} = req.body
 
 		const isUser = await User.findById(id)
@@ -130,6 +147,10 @@ export const updateUser = async (
 		isUser.paid_subscription = paid_subscription
 		isUser.socials_links = paid_date
 		isUser.socials_links = {...socials_links}
+		isUser.pay_package = pay_package
+		isUser.style_shop = {...style_shop}
+		isUser.open_shop = open_shop
+		isUser.qr_code = {...qr_code}
 
 		await isUser.save()
 		res.json({

@@ -75,6 +75,42 @@ const UserSchema = new mongoose.Schema(
 				require: false,
 			},
 		},
+		style_shop: {
+			type: Object,
+			require: false,
+			text_color: {
+				type: String,
+				require: false,
+			},
+			background_color: {
+				type: String,
+				require: false,
+			},
+		},
+		pay_package: {
+			type: String,
+			require: false,
+		},
+		open_shop: {
+			type: Boolean,
+			require: true,
+		},
+		qr_code: {
+			type: Object,
+			require: false,
+			text_color: {
+				type: String,
+				require: false,
+			},
+			background_color: {
+				type: String,
+				require: false,
+			},
+			typeQr: {
+				type: String,
+				require: false,
+			}
+		},
 		categories: [{
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Categories'
