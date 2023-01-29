@@ -17,15 +17,15 @@ export const nodeMailer = (
 			secure: false, // true for 465, false for other ports
 			auth: {
 				user: process.env.EMAIL_MY, // generated ethereal user
-				pass:  process.env.EMAIL_PASS, // generated ethereal password
+				pass: process.env.EMAIL_PASS, // generated ethereal password
 			},
 		})
 		let info = await transporter.sendMail({
-				from: process.env.EMAIL_MY,
-				to: `${shop_email}`, //получатель
-				subject: "Order",
-				text: "Order client",
-				html: `
+			from: process.env.EMAIL_MY,
+			to: `${shop_email}`, //получатель
+			subject: "Order",
+			text: "Order client",
+			html: `
 				<h1>Order for ${shop_name}</h1>
 				<h2>Client contact <br>
 					Name: ${username} <br>
@@ -33,7 +33,7 @@ export const nodeMailer = (
 				</h2>
 				<table style="font-size: 14px;">
 					${items?.map(item => (
-								`
+				`
 									<tr>
 										<th style='width: 100px; white-space: nowrap; padding: 0 10px; text-align: left; background-color: coral'>
 											Name product: 
@@ -55,7 +55,14 @@ export const nodeMailer = (
 											Unit product:  
 										</th>
 										<td style='width: 250px; padding: 0 10px; background-color: limegreen'>
-											${item?.count} ${item?.unit_product}
+											${item?.count}${item?.unit_product === 'gram' ||
+												item?.unit_product === 'грам' ||
+												item?.unit_product === 'milliliter' ||
+												item?.unit_product === 'мілілітр'
+													? '00'
+													: ''
+												} 
+												${item?.unit_product}
 										</td>
 									</tr>
 									<tr>
@@ -67,11 +74,11 @@ export const nodeMailer = (
 										</td>
 									</tr>
 								`
-							))}
+			))}
 				</table>
 				<h3>Total Amount: ${totalAmount}</h3>
 				`
-			})
+		})
 
 		console.log("Message sent: %s", info.messageId)
 
