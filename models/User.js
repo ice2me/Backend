@@ -111,6 +111,10 @@ const UserSchema = new mongoose.Schema(
 				require: false,
 			}
 		},
+		variant_trading: {
+			type: String,
+			require: true,
+		},
 		categories: [{
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'Categories'
