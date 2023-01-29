@@ -7,7 +7,10 @@ export const nodeMailer = (
 		phone,
 		username,
 		totalAmount,
-		shop_name
+		shop_name,
+		city,
+		address,
+		comment_message,
 	}
 ) => {
 	async function main() {
@@ -27,10 +30,15 @@ export const nodeMailer = (
 			text: "Order client",
 			html: `
 				<h1>Order for ${shop_name}</h1>
-				<h2>Client contact <br>
+				<h3>Client contact <br>
 					Name: ${username} <br>
 					Phone: ${phone} <br>
-				</h2>
+					City: ${city} <br>
+					Address: ${address} <br>
+				</h3>
+				<p style='width: 300px;'>
+					Comment Message: ${comment_message} <br>
+				</p>
 				<table style="font-size: 14px;">
 					${items?.map(item => (
 				`

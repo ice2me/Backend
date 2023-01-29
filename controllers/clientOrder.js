@@ -80,10 +80,12 @@ export const postBasketFormClient = async (req,
 			phone,
 			username,
 			items,
-			shop_name
+			shop_name,
+			city,
+			address,
+			comment_message,
 
 		} = req.body
-
 		const shop = !!await User.findById(shop_id)
 		const totalAmount = items?.map(item => item?.total_price).reduce((prevValue, curValue) => prevValue + curValue, 0)
 
@@ -94,7 +96,10 @@ export const postBasketFormClient = async (req,
 				phone,
 				username,
 				totalAmount,
-				shop_name
+				shop_name,
+				city,
+				address,
+				comment_message,
 			})
 
 			res.json({message: 'Your order has been transferred to the seller, he will contact you shortly.'})
