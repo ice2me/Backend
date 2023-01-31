@@ -53,7 +53,6 @@ export const getAllShops = async (req,
 	res) => {
 	try {
 		const allShops = await User.find()
-
 		const list = allShops.map(item => {
 			const newArr = new Object()
 			newArr.shop_name = item.shop_name

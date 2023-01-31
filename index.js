@@ -16,8 +16,7 @@ index.use(express.json())
 index.use(json({ limit: '50mb' }))
 index.use('/api/auth', authRoute)
 index.use('/api/categories', categoriesRoute)
-// index.use('/api/link', clientOrder)
-index.use('/', clientOrder)
+index.use('/api/client/', clientOrder)
 
 async function start() {
 	try {
