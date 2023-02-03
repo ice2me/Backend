@@ -53,14 +53,18 @@ export const getAllShops = async (req,
 	res) => {
 	try {
 		const allShops = await User.find()
+
 		const list = allShops.map(item => {
 			const newArr = new Object()
 			newArr.shop_name = item.shop_name
 			newArr.description = item.description
 			newArr.image_logo = item.image_logo
+			newArr.open_shop = item.open_shop
 			return newArr
 		})
-		const arr = [...list]
+
+		const openShopFiltered = list.filter(item => item.open_shop === true)
+		const arr = [...openShopFiltered]
 
 		res.json({
 			arrShopsList: arr

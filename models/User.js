@@ -33,7 +33,6 @@ const UserSchema = new mongoose.Schema(
 		},
 		image_logo: {
 			type: String,
-			unique: false,
 			default: ''
 		},
 		description: {
@@ -43,7 +42,6 @@ const UserSchema = new mongoose.Schema(
 		shop_link: {
 			type: String,
 			require: false,
-			unique: false,
 			min: 3,
 			max: 65
 		},

@@ -21,12 +21,12 @@ export const register = async (
 			open_shop,
 			variant_trading
 		} = req.body
-		const isUsed = await User.findOne({username})
+		const isUser = await User.findOne({username})
 		const isEmail = await User.findOne({email})
 		const isPhone = await User.findOne({phone})
 		const isShopName = await User.findOne({shop_name})
 
-		if (isUsed) {
+		if (isUser) {
 			return res.json({
 				error: {
 					username: 'this user already exists'
@@ -123,9 +123,9 @@ export const updateUser = async (
 	try {
 		const {
 			id,
-			username,
-			phone,
-			shop_name,
+			// username,
+			// phone,
+			// shop_name,
 			image_logo,
 			description,
 			shop_link,
@@ -140,9 +140,9 @@ export const updateUser = async (
 
 		const isUser = await User.findById(id)
 
-		isUser.username = username
-		isUser.phone = phone
-		isUser.shop_name = shop_name
+		// isUser.username = username
+		// isUser.phone = phone
+		// isUser.shop_name = shop_name
 		isUser.image_logo = image_logo
 		isUser.description = description
 		isUser.shop_link = shop_link
@@ -173,6 +173,7 @@ export const login = async (req,
 			email,
 			password
 		} = req.body
+
 		const user = await User.findOne({email})
 		if (!user) {
 			return res.json({error: {message: 'this user does not exist'}})
@@ -189,6 +190,7 @@ export const login = async (req,
 			}, process.env.JWT_SECRET,
 			{expiresIn: '30d'},
 		)
+
 		res.json({
 			token,
 			user,
