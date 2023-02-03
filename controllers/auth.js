@@ -71,14 +71,14 @@ export const register = async (
 
 		const salt = bcrypt.genSaltSync(10)
 		const hash = bcrypt.hashSync(password, salt)
-
+		const strReplace = shop_name.trim().replace(/ /ig, '_')
 // save user
 		const newUser = new User({
 			username,
 			email,
 			phone,
 			password: hash,
-			shop_name,
+			shop_name: strReplace,
 			description,
 			shop_link,
 			socials_links,
