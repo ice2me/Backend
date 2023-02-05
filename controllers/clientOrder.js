@@ -60,6 +60,7 @@ export const getAllShops = async (req,
 			newArr.description = item.description
 			newArr.image_logo = item.image_logo
 			newArr.open_shop = item.open_shop
+			newArr.variant_trading = item.variant_trading
 			return newArr
 		})
 
