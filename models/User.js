@@ -2,13 +2,6 @@ import mongoose from "mongoose"
 
 const UserSchema = new mongoose.Schema(
 	{
-		username: {
-			type: String,
-			require: true,
-			unique: true,
-			min: 3,
-			max: 65
-		},
 		email: {
 			type: String,
 			require: true,
@@ -49,7 +42,7 @@ const UserSchema = new mongoose.Schema(
 			type: Boolean,
 			require: true,
 		},
-		paid_date: {
+		date_payment: {
 			type: String,
 			require: true,
 		},
@@ -110,6 +103,14 @@ const UserSchema = new mongoose.Schema(
 			}
 		},
 		variant_trading: {
+			type: String,
+			require: true,
+		},
+		register_data: {
+			type: String,
+			require: true,
+		},
+		end_date_paid_period: {
 			type: String,
 			require: true,
 		},
