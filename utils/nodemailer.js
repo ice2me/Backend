@@ -11,6 +11,7 @@ export const nodeMailer = (
 		city,
 		address,
 		comment_message,
+		user_email
 	}
 ) => {
 	async function main() {
@@ -25,7 +26,7 @@ export const nodeMailer = (
 		})
 		let info = await transporter.sendMail({
 			from: process.env.EMAIL_MY,
-			to: `${shop_email}`, //получатель
+			to: [`${shop_email}`, `${user_email}`], //получатель
 			subject: "Order",
 			text: "Order client",
 			html: `
@@ -33,6 +34,7 @@ export const nodeMailer = (
 				<h3>Client contact <br>
 					Name: ${username} <br>
 					Phone: ${phone} <br>
+					Email: ${user_email} <br>
 					City: ${city} <br>
 					Address: ${address} <br>
 				</h3>
@@ -84,7 +86,7 @@ export const nodeMailer = (
 								`
 			))}
 				</table>
-				<h3>Total Amount: ${totalAmount}</h3>
+				<h3>Total Amount: ${totalAmount}₴</h3>
 				`
 		})
 

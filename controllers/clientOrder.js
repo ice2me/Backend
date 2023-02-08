@@ -81,6 +81,7 @@ export const postBasketFormClient = async (req,
 		const {
 			shop_id,
 			shop_email,
+			user_email,
 			phone,
 			username,
 			items,
@@ -92,7 +93,6 @@ export const postBasketFormClient = async (req,
 		} = req.body
 		const shop = !!await User.findById(shop_id)
 		const totalAmount = items?.map(item => item?.total_price).reduce((prevValue, curValue) => prevValue + curValue, 0)
-
 		if (shop) {
 			nodeMailer({
 				shop_email,
@@ -104,6 +104,7 @@ export const postBasketFormClient = async (req,
 				city,
 				address,
 				comment_message,
+				user_email
 			})
 
 			res.json({message: 'Your order has been transferred to the seller, he will contact you shortly.'})
