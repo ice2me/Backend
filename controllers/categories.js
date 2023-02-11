@@ -36,7 +36,7 @@ export const getCategories = async (req,
 		const categories = categoriesTeh.reverse()
 		res.json({categories})
 	} catch (e) {
-
+		res.json({message: 'Something went wrong.'})
 	}
 }
 

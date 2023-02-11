@@ -11,7 +11,6 @@ export const updateUser = async (
 			shop_link,
 			socials_links,
 			paid_subscription,
-			paid_date,
 			pay_package,
 			style_shop,
 			open_shop,
@@ -23,7 +22,6 @@ export const updateUser = async (
 		isUser.description = description
 		isUser.shop_link = shop_link
 		isUser.paid_subscription = paid_subscription
-		isUser.socials_links = paid_date
 		isUser.socials_links = {...socials_links}
 		isUser.pay_package = pay_package
 		isUser.style_shop = {...style_shop}

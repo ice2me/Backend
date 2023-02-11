@@ -9,7 +9,6 @@ import { registerShop } from "../controllers/auth/RegistrationShop.js"
 
 const router = new Router()
 
-//Register and login
 router.post('/register', register)
 router.post('/register-shop',checkAuth, registerShop)
 router.patch('/update', checkAuth, updateUser)

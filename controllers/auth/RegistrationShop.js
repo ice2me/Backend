@@ -43,7 +43,7 @@ export const registerShop = async (
 				typeQr: ""
 			}
 			isUser.paid_subscription = false,
-			isUser.register_data = new Date(),
+			isUser.register_data = dateStr(new Date().toISOString(), 1),
 			isUser.date_payment = dateStr(new Date().toISOString(), 1),
 			isUser.end_date_paid_period = dateStr(new Date().toISOString(), 2),
 			isUser.pay_package = "Standart"
