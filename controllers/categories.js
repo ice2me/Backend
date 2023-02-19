@@ -6,16 +6,20 @@ export const createCategories = async (req,
 	res) => {
 	try {
 		const {category_name} = req.body
-		const newCategories = new Categories({
-			user_id: req.userId,
-			category_name
-		})
-		await newCategories.save()
-		await User.findByIdAndUpdate(req.userId, {
-			$push: {categories: newCategories}
-		})
+		if (category_name !== "") {
+			const newCategories = new Categories({
+				user_id: req.userId,
+				category_name
+			})
+			await newCategories.save()
+			await User.findByIdAndUpdate(req.userId, {
+				$push: {categories: newCategories}
+			})
 
-		res.json(newCategories)
+			res.json(newCategories)
+		} else {
+			res.json({message: 'Error something went wrong.'})
+		}
 	} catch (e) {
 		res.json({message: 'Something went wrong.'})
 	}
@@ -47,16 +51,19 @@ export const updateCategoryName = async (
 		const {
 			category_name
 		} = req.body
+		if (category_name !== "") {
+			const isCategoryName = await Categories.findById(req.params.id)
+			isCategoryName.category_name = category_name
 
-		const isCategoryName = await Categories.findById(req.params.id)
-		isCategoryName.category_name = category_name
+			await isCategoryName.save()
 
-		await isCategoryName.save()
-
-		res.json({
-			isCategoryName,
-			message: 'Update Category name completed'
-		})
+			res.json({
+				isCategoryName,
+				message: 'Update Category name completed'
+			})
+		} else {
+			res.json('Error for update Category name')
+		}
 
 	} catch (e) {
 		res.json(e, {error: {message: 'Error for update Category name'}})
