@@ -26,7 +26,10 @@ export const nodeMailer = (
 		})
 		let info = await transporter.sendMail({
 			from: process.env.EMAIL_MY,
-			to: [`${shop_email}`, `${user_email}`], //получатель
+			to: [
+				`${shop_email}`,
+				// `${user_email}`
+			], //получатель
 			subject: "Order",
 			text: "Order client",
 			html: `
