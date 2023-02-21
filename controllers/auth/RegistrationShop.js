@@ -12,7 +12,8 @@ export const registerShop = async (
 			shop_link,
 			socials_links,
 			open_shop,
-			variant_trading
+			variant_trading,
+			calculate_total_cost
 		} = req.body
 
 		const isShopName = await User.findOne({shop_name})
@@ -32,6 +33,7 @@ export const registerShop = async (
 			isUser.shop_link = shop_link
 			isUser.socials_links = {...socials_links}
 			isUser.open_shop = open_shop
+			isUser.calculate_total_cost = calculate_total_cost
 			isUser.variant_trading = variant_trading
 			isUser.style_shop = {
 				text_color: "",

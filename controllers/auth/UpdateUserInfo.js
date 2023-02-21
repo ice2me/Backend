@@ -15,6 +15,7 @@ export const updateUser = async (
 			style_shop,
 			open_shop,
 			qr_code,
+			calculate_total_cost
 		} = req.body
 
 		const isUser = await User.findById(id)
@@ -27,6 +28,7 @@ export const updateUser = async (
 		isUser.style_shop = {...style_shop}
 		isUser.open_shop = open_shop
 		isUser.qr_code = {...qr_code}
+		isUser.calculate_total_cost = calculate_total_cost
 
 		await isUser.save()
 		res.json({

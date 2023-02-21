@@ -80,7 +80,8 @@ export const nodeMailer = (
 								`
 			))}
 				</table>
-				<h3>Total Amount / Загальна сума замовлення: <span style="background-color: rgba(247,206,0, 0.5); font-size: 22px">${totalAmount}₴</span></h3>
+				<h3>Total Amount / Загальна сума замовлення: <span style="background-color: rgba(247,206,0, 0.5); font-size: 22px">${totalAmount}₴</span>
+				</h3>
 				`
 		})
 

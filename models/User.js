@@ -86,6 +86,10 @@ const UserSchema = new mongoose.Schema(
 			type: Boolean,
 			require: true,
 		},
+		calculate_total_cost: {
+			type: Boolean,
+			require: true,
+		},
 		qr_code: {
 			type: Object,
 			require: false,
