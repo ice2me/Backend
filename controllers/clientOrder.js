@@ -2,6 +2,7 @@ import Categories from "../models/Categories.js"
 import Products from "../models/Products.js"
 import User from "../models/User.js"
 import { nodeMailer } from "../utils/nodemailer.js"
+import { nodeMailerWithTotalCost } from "../utils/nodeMailerWithTotalCost.js";
 
 export const getCategoriesForLink = async (req,
 	res) => {
@@ -92,17 +93,24 @@ export const postBasketFormClient = async (req,
 			calculate_total_cost,
 		} = req.body
 		const shop = !!await User.findById(shop_id)
-		let totalAmount = null
-		if (calculate_total_cost) {
-			totalAmount = items?.map(item => item?.total_price).reduce((prevValue, curValue) => prevValue + curValue, 0)
-			return totalAmount
-		} else {
-			totalAmount = ""
-		}
-		console.log(totalAmount)
+		const totalAmount = items?.map(item => item?.total_price).reduce((prevValue, curValue) => prevValue + curValue, 0)
 
-		if (shop) {
+		if (shop && !calculate_total_cost) {
 			nodeMailer({
+				shop_email,
+				items,
+				phone,
+				username,
+				shop_name,
+				city,
+				address,
+				comment_message,
+				user_email,
+			})
+
+			res.json({message: "Ваше замовлення передано продавцю, він зв'яжеться з вами найближчим часом."})
+		} else {
+			nodeMailerWithTotalCost({
 				shop_email,
 				items,
 				phone,
@@ -115,7 +123,7 @@ export const postBasketFormClient = async (req,
 				user_email,
 			})
 
-			res.json({message: 'Your order has been transferred to the seller, he will contact you shortly.'})
+			res.json({message: "Ваше замовлення передано продавцю, він зв'яжеться з вами найближчим часом."})
 		}
 	} catch (e) {
 		res.json({error: {message: 'Error send form'}})

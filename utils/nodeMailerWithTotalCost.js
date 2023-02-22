@@ -1,11 +1,12 @@
 import nodemailer from 'nodemailer'
 
-export const nodeMailer = (
+export const nodeMailerWithTotalCost = (
 	{
 		shop_email,
 		items,
 		phone,
 		username,
+		totalAmount,
 		shop_name,
 		city,
 		address,
@@ -33,24 +34,24 @@ export const nodeMailer = (
 			subject: "Order",
 			text: "Order client",
 			html: `
-				<h1>Замовлення для <span style="background-color: rgba(247,206,0, 0.3)">${shop_name}</span>
+				<h1>Order for / Замовлення для <span style="background-color: rgba(247,206,0, 0.3)">${shop_name}</span>
 				</h1>
-				<h3>Контакти клієнта <br>
-					Імь'я: <span style="background-color: rgba(247,206,0, 0.3)">${username}</span> <br>
-					Телефон: <span style="background-color: rgba(247,206,0, 0.3)">${phone}</span> <br>
-					Електронна адреса: <span style="background-color: rgba(247,206,0, 0.3)">${user_email}</span> <br>
-					Місто: <span style="background-color: rgba(247,206,0, 0.3)">${city}</span> <br>
-					Адреса: <span style="background-color: rgba(247,206,0, 0.3)">${address}</span> <br>
+				<h3>Client contact / Контакти клієнта <br>
+					Name / Імь'я: <span style="background-color: rgba(247,206,0, 0.3)">${username}</span> <br>
+					Phone / Телефон: <span style="background-color: rgba(247,206,0, 0.3)">${phone}</span> <br>
+					Email / Електронна адреса: <span style="background-color: rgba(247,206,0, 0.3)">${user_email}</span> <br>
+					City / Місто: <span style="background-color: rgba(247,206,0, 0.3)">${city}</span> <br>
+					Address / Адреса: <span style="background-color: rgba(247,206,0, 0.3)">${address}</span> <br>
 				</h3>
 				<p style='width: 300px;'>
-					Коментар: <span style="background-color: rgba(247,206,0, 0.5);">${comment_message}</span> <br>
+					Comment Message / Коментар: <span style="background-color: rgba(247,206,0, 0.5);">${comment_message}</span> <br>
 				</p>
 				<table style="font-size: 14px;">
 					${items?.map(item => (
 				`
 									<tr>
 										<th style='width: 100px; white-space: nowrap; padding: 0 10px; text-align: left; background-color: rgba(255,127,80, 0.3)'>
-											Назва товару:
+											Name product / Назва товару:
 										</th>
 										<td style='width: 250px; padding: 0 10px; background-color: rgba(50,205,50, 0.3)'>
 											${item?.name_product}
@@ -58,7 +59,7 @@ export const nodeMailer = (
 									</tr>
 									<tr>
 										<th style='width: 100px; white-space: nowrap; padding: 0 10px; text-align: left; background-color: rgba(255,127,80, 0.3)'>
-											Ціна:
+											Price / Ціна:
 										</th>
 										<td style='width: 250px; padding: 0 10px; background-color: rgba(50,205,50, 0.3)'>
 											 ${item?.price_product} ${item?.currency_product}
@@ -66,15 +67,25 @@ export const nodeMailer = (
 									</tr>
 									<tr>
 										<th style='width: 100px; white-space: nowrap; padding: 0 10px; text-align: left; background-color: rgba(255,127,80, 0.3)'>
-											Кількість продукту: 
+											Unit product / Кількість продукту: 
 										</th>
 										<td style='width: 250px; padding: 0 10px; background-color: rgba(50,205,50, 0.3)'>
 											${item?.count} ${item?.unit_product}
 										</td>
 									</tr>
+									<tr>
+										<th style='width: 100px; white-space: nowrap; padding: 0 10px; text-align: left; background-color: rgba(255,127,80, 0.3)'>
+											Total Price / Загальна сума за продукт:
+										</th>
+										<td style='width: 250px; padding: 0 10px; background-color: rgba(50,205,50, 0.3)'>
+											${item?.total_price} ${item?.currency_product}
+										</td>
+									</tr>
 								`
 			))}
 				</table>
+				<h3>Total Amount / Загальна сума замовлення: <span style="background-color: rgba(247,206,0, 0.5); font-size: 22px">${totalAmount}₴</span>
+				</h3>
 				`
 		})
 
