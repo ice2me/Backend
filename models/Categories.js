@@ -6,6 +6,10 @@ const CategoriesSchema = new mongoose.Schema(
 			type: String,
 			required: false
 		},
+		category_image: {
+			type: String,
+			required: false
+		},
 		user_id: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User'

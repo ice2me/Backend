@@ -5,11 +5,16 @@ import Products from "../models/Products.js"
 export const createCategories = async (req,
 	res) => {
 	try {
-		const {category_name} = req.body
+		const {
+			category_name,
+			category_image
+		} = req.body
+
 		if (category_name !== "") {
 			const newCategories = new Categories({
 				user_id: req.userId,
-				category_name
+				category_name,
+				category_image
 			})
 			await newCategories.save()
 			await User.findByIdAndUpdate(req.userId, {
@@ -49,11 +54,13 @@ export const updateCategoryName = async (
 	res) => {
 	try {
 		const {
-			category_name
+			category_name,
+			category_image
 		} = req.body
 		if (category_name !== "") {
 			const isCategoryName = await Categories.findById(req.params.id)
 			isCategoryName.category_name = category_name
+			isCategoryName.category_image = category_image
 
 			await isCategoryName.save()
 
