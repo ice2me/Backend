@@ -33,10 +33,10 @@ export const updateUser = async (
 		await isUser.save()
 		res.json({
 			isUser,
-			message: 'Update User info completed'
+			message: 'Оновлення інформації про користувача вдало завершено'
 		})
 
 	} catch (e) {
-		res.json(e, {error: {message: 'Error for registration user'}})
+		res.json(e, {error: {message: 'Помилка оновлення інформації користувача, спробуйте пізніше'}})
 	}
 }

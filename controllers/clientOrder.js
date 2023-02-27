@@ -23,9 +23,7 @@ export const getCategoriesForLink = async (req,
 		}
 
 	} catch (e) {
-		// res.json({data: {error: {message: 'Error for download category'}}})
 		res.json({shop: null})
-		// res.redirect('/')
 	}
 }
 export const getProductClient = async (req,
@@ -38,7 +36,7 @@ export const getProductClient = async (req,
 			}))
 
 		if (!itemsTeh) {
-			return res.json({message: 'Your are don`t have items'})
+			return res.json({message: 'У вас немає продуктів'})
 		}
 
 		let items = [...itemsTeh].sort((a, b) => a.available_product - b.available_product).reverse()
@@ -47,7 +45,7 @@ export const getProductClient = async (req,
 			items: items
 		})
 	} catch (e) {
-		res.json({error: {message: 'Error download products'}})
+		res.json({error: {message: 'Помилка завантаження продуктів, спробуйте пізніше'}})
 	}
 }
 export const getAllShops = async (req,
@@ -73,7 +71,7 @@ export const getAllShops = async (req,
 		})
 
 	} catch (e) {
-		res.json({error: {message: 'Error download shops list'}})
+		res.json({error: {message: 'Помилка завантаження списку магазинів'}})
 	}
 }
 export const postBasketFormClient = async (req,
@@ -126,6 +124,6 @@ export const postBasketFormClient = async (req,
 			res.json({message: "Ваше замовлення передано продавцю, він зв'яжеться з вами найближчим часом 💙💛"})
 		}
 	} catch (e) {
-		res.json({error: {message: 'Error send form'}})
+		res.json({error: {message: 'Помилка надсилання форми'}})
 	}
 }

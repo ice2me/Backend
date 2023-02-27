@@ -15,15 +15,15 @@ export const createProduct = async (req,
 				$push: {category_list: newItems._id}
 			})
 		} catch (e) {
-			res.json({message: 'Something went wrong!!'})
+			res.json({message: 'Щось пішло не так.'})
 		}
 
 		res.json({
 			newItems,
-			message: 'Product creation completed successfully'
+			message: 'Створення продукту успішно завершено'
 		})
 	} catch (e) {
-		res.json({message: 'Something went wrong.'})
+		res.json({message: 'Щось пішло не так, спробуйте пізніше'})
 	}
 }
 
@@ -37,7 +37,7 @@ export const getProduct = async (req,
 			}))
 
 		if (!itemsTeh) {
-			return res.json({message: 'Your are don`t have items'})
+			return res.json({message: 'У вас немає товарів'})
 		}
 
 		let items = [...itemsTeh].sort((a, b) => a.available_product - b.available_product).reverse()
@@ -77,11 +77,11 @@ export const updateProduct = async (
 
 		res.json({
 			isCategoryProduct,
-			message: 'Update Product info completed'
+			message: 'Оновлення інформації про продукт вдало завершено'
 		})
 
 	} catch (e) {
-		res.json(e, {error: {message: 'Error for update product'}})
+		res.json(e, {error: {message: 'Помилка оновлення продукту, спробуйте пізніше'}})
 	}
 }
 
@@ -100,11 +100,11 @@ export const updateAvailableCheckedProduct = async (
 
 		res.json({
 			isAvailableProduct,
-			message: 'Update Available status'
+			message: 'Оновити доступний статус'
 		})
 
 	} catch (e) {
-		res.json(e, {error: {message: 'Error for update product'}})
+		res.json(e, {error: {message: 'Помилка оновлення статусу продукту, спробуйте пізніше'}})
 	}
 }
 
@@ -121,10 +121,10 @@ export const deleteProduct = async (
 
 		res.json({
 			data,
-			message: `You deleted product card ${data.name_product}`
+			message: `Ви видалили картку товару ${data.name_product}`
 		})
 
 	} catch (e) {
-		res.json(e, {error: {message: 'Error for update product'}})
+		res.json(e, {error: {message: 'Помилка видаення картки товару, спробуйте пізніше'}})
 	}
 }

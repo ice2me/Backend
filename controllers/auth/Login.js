@@ -14,13 +14,13 @@ export const login = async (req,
 
 		const user = await User.findOne({email})
 		if (!user) {
-			return res.json({error: {message: 'this user does not exist'}})
+			return res.json({error: {message: 'Цього користувача не існує'}})
 		}
 
 		const isPasswordCorrect = await bcrypt.compare(password, user.password)
 
 		if (!isPasswordCorrect) {
-			return res.json({error: {message: 'Password not correct...'}})
+			return res.json({error: {message: 'Пароль невірний...'}})
 		}
 //jwt add
 		const token = jwt.sign({
@@ -32,10 +32,10 @@ export const login = async (req,
 		res.json({
 			token,
 			user,
-			message: 'Your enter system'
+			message: 'Ви увійшли'
 		})
 
 	} catch (e) {
-		res.json({error: {message: 'error for login'}})
+		res.json({error: {message: 'Помилка при спробі увійти, спробуйте пізніше'}})
 	}
 }

@@ -13,13 +13,13 @@ export const deleteUser = async (req,
 			}))
 		console.log(itemsTeh)
 		res.json({
-			message: 'Remove User'
+			message: 'Видалення користувача прошло успішно'
 		})
 	} catch (e) {
 		res.json({
 			error:
 				{
-					message: 'this user does not exist'
+					message: 'Цього користувача не існує'
 				}
 		})
 	}

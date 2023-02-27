@@ -1,6 +1,7 @@
 import User from "../../models/User.js"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
+import { nodeMailerRegistration } from "../../utils/nodeMailerRegistration.js";
 
 export const register = async (
 	req,
@@ -15,19 +16,19 @@ export const register = async (
 		const isEmail = await User.findOne({email})
 		const isPhone = await User.findOne({phone})
 
-		if (isEmail) {
+		if (!!isEmail) {
 			return res.json({
 				error:
 					{
-						email: 'this email already exists'
+						email: 'Ця адреса електронної пошти вже існує'
 					}
 			})
 		}
-		if (isPhone) {
+		if (!!isPhone) {
 			return res.json({
 				error:
 					{
-						phone: 'this phone already exists'
+						phone: 'Цей телефон вже існує'
 					}
 			})
 		}
@@ -38,7 +39,7 @@ export const register = async (
 			return res.json({
 				error:
 					{
-						password: 'this passwords are not equal'
+						password: 'Ці паролі не однакові'
 					}
 			})
 		}
@@ -61,13 +62,15 @@ export const register = async (
 
 		await newUser.save()
 
+		nodeMailerRegistration({email})
+
 		res.json({
 			token,
 			newUser,
-			message: 'Registration successfully completed'
+			message: 'Реєстрація користувача успішна'
 		})
 
 	} catch (e) {
-		res.json(e, {error: {message: 'Error for registration user'}})
+		res.json(e, {error: {message: 'Помилка реєстрації, спробуйте ще раз пізніше :('}})
 	}
 }

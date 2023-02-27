@@ -10,7 +10,7 @@ export const getMe = async (req,
 			return res.json({
 				error:
 					{
-						message: 'this user does not exist'
+						message: 'цього користувача не існує'
 					}
 			})
 		}
@@ -30,7 +30,7 @@ export const getMe = async (req,
 		res.json({
 			error:
 				{
-					message: 'this user does not exist'
+					message: 'цього користувача не існує'
 				}
 		})
 	}

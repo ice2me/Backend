@@ -23,10 +23,10 @@ export const createCategories = async (req,
 
 			res.json(newCategories)
 		} else {
-			res.json({message: 'Error something went wrong.'})
+			res.json({message: 'Помилка щось пішло не так.'})
 		}
 	} catch (e) {
-		res.json({message: 'Something went wrong.'})
+		res.json({message: 'Щось пішло не так.'})
 	}
 }
 
@@ -40,12 +40,12 @@ export const getCategories = async (req,
 				return Categories.findById(categories._id)
 			}))
 		if (!categoriesTeh) {
-			return res.json({message: 'Your are don`t have categories'})
+			return res.json({message: 'У вас немає категорій'})
 		}
 		const categories = categoriesTeh.reverse()
 		res.json({categories})
 	} catch (e) {
-		res.json({message: 'Something went wrong.'})
+		res.json({message: 'Щось пішло не так.'})
 	}
 }
 
@@ -66,14 +66,14 @@ export const updateCategoryName = async (
 
 			res.json({
 				isCategoryName,
-				message: 'Update Category name completed'
+				message: 'Оновлення назви категорії вдало завершено'
 			})
 		} else {
-			res.json('Error for update Category name')
+			res.json('Помилка оновлення назви категорії')
 		}
 
 	} catch (e) {
-		res.json(e, {error: {message: 'Error for update Category name'}})
+		res.json(e, {error: {message: 'Помилка оновлення назви категорії'}})
 	}
 }
 
@@ -95,10 +95,10 @@ export const deleteCategory = async (
 		})
 		res.json({
 			data,
-			message: `You deleted category ${data.category_name}`
+			message: `Ви видалили категорію ${data.category_name}`
 		})
 
 	} catch (e) {
-		res.json(e, {error: {message: 'Error for delete category'}})
+		res.json(e, {error: {message: 'Помилка видалення категорії, спробуйте пізніше'}})
 	}
 }

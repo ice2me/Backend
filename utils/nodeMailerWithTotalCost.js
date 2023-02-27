@@ -89,9 +89,6 @@ export const nodeMailerWithTotalCost = (
 				`
 		})
 
-		// console.log("Message sent: %s", info.messageId)
-		//
-		// console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info))
 		nodemailer.getTestMessageUrl(info)
 	}
 

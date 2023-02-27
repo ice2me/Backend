@@ -1,5 +1,5 @@
 import User from "../../models/User.js"
-import { dateStr } from "../../utils/dateHelper.js";
+import { dateStr } from "../../utils/dateHelper.js"
 
 export const registerShop = async (
 	req,
@@ -22,13 +22,13 @@ export const registerShop = async (
 			return res.json({
 				error:
 					{
-						shop_name: 'this shop name already exists'
+						shop_name: 'Ця назва магазину/меню вже існує'
 					}
 			})
 
 		} else {
 			const isUser = await User.findById(id)
-			isUser.shop_name = shop_name.trim().replace(/ /ig, '_')
+			isUser.shop_name = shop_name?.trim().replace(/ /ig, '_')
 			isUser.description = description
 			isUser.shop_link = shop_link
 			isUser.socials_links = {...socials_links}
@@ -54,11 +54,11 @@ export const registerShop = async (
 
 			res.json({
 				isUser,
-				message: 'Registration successfully completed'
+				message: 'Реєстрацію магазину/меню успішно завершено'
 			})
 		}
 
 	} catch (e) {
-		res.json(e, {error: {message: 'Error for registration shop'}})
+		res.json(e, {error: {message: 'Помилка реєстрації магазину/меню'}})
 	}
 }
