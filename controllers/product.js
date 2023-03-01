@@ -1,7 +1,6 @@
 import Categories from "../models/Categories.js"
 import Products from "../models/Products.js"
 
-
 export const createProduct = async (req,
 	res) => {
 	try {
@@ -44,7 +43,7 @@ export const getProduct = async (req,
 
 		res.json(items)
 	} catch (e) {
-
+		res.json({message: 'Щось пішло не так, спробуйте пізніше'})
 	}
 }
 
