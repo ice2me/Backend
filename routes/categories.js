@@ -13,7 +13,10 @@ import {
 	updateAvailableCheckedProduct,
 	updateProduct
 } from "../controllers/product.js"
-import { searchProduct } from "../searchProduct.js"
+import {
+	searchProduct,
+	searchProductTagAdmin
+} from "../searchProduct.js"
 
 const router = new Router()
 
@@ -31,6 +34,7 @@ router.patch('/product-available/:id', checkAuth, updateAvailableCheckedProduct)
 router.delete('/product/:id', checkAuth, deleteProduct)
 
 // search product
-router.get('/search/', searchProduct)
+router.post('/search', checkAuth, searchProduct)
+router.post('/search_tag',checkAuth, searchProductTagAdmin)
 
 export default router
