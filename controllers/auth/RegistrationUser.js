@@ -1,7 +1,7 @@
 import User from "../../models/User.js"
 import bcrypt from "bcryptjs"
 import jwt from "jsonwebtoken"
-import { nodeMailerRegistration } from "../../utils/nodeMailerRegistration.js";
+import { nodeMailerRegistration } from "../../utils/nodeMailerRegistration.js"
 
 export const register = async (
 	req,
@@ -11,10 +11,13 @@ export const register = async (
 			email,
 			phone,
 			password,
-			password_confirm
+			password_confirm,
+			shop_name,
+			variant_trading,
 		} = req.body
 		const isEmail = await User.findOne({email})
 		const isPhone = await User.findOne({phone})
+		const isShopName = await User.findOne({shop_name})
 
 		if (!!isEmail) {
 			return res.json({
@@ -32,7 +35,14 @@ export const register = async (
 					}
 			})
 		}
-
+		if (!!isShopName) {
+			return res.json({
+				error:
+					{
+						shop_name: 'Ця назва магазину/меню вже існує'
+					}
+			})
+		}
 //hash password
 
 		if (password_confirm !== password) {
@@ -51,6 +61,9 @@ export const register = async (
 			email,
 			phone,
 			password: hash,
+			shop_name: shop_name?.trim().replace(/ /ig, '_'),
+			variant_trading:  variant_trading,
+			created_shop: false
 
 		})
 //jwt add

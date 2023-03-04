@@ -1,5 +1,5 @@
-import User from "../../models/User.js"
 import { dateStr } from "../../utils/dateHelper.js"
+import User from "../../models/User.js"
 
 export const registerShop = async (
 	req,
@@ -7,56 +7,42 @@ export const registerShop = async (
 	try {
 		const {
 			id,
-			shop_name,
 			description,
 			shop_link,
 			socials_links,
 			open_shop,
-			variant_trading,
 			calculate_total_cost
 		} = req.body
 
-		const isShopName = await User.findOne({shop_name})
-
-		if (!!isShopName) {
-			return res.json({
-				error:
-					{
-						shop_name: 'Ця назва магазину/меню вже існує'
-					}
-			})
-
-		} else {
-			const isUser = await User.findById(id)
-			isUser.shop_name = shop_name?.trim().replace(/ /ig, '_')
-			isUser.description = description
-			isUser.shop_link = shop_link
-			isUser.socials_links = {...socials_links}
-			isUser.open_shop = open_shop
-			isUser.calculate_total_cost = calculate_total_cost
-			isUser.variant_trading = variant_trading
-			isUser.style_shop = {
+			const isShop = await User.findById(id)
+			isShop.description = description
+			isShop.shop_link = shop_link
+			isShop.socials_links = {...socials_links}
+			isShop.open_shop = open_shop
+			isShop.calculate_total_cost = calculate_total_cost
+			isShop.style_shop = {
 				text_color: "",
 				background_color: "",
 			}
-			isUser.qr_code = {
+			isShop.qr_code = {
 				text_color: "",
 				background_color: "",
 				typeQr: ""
 			}
-			isUser.paid_subscription = false,
-			isUser.register_data = dateStr(new Date().toISOString(), 1),
-			isUser.date_payment = dateStr(new Date().toISOString(), 1),
-			isUser.end_date_paid_period = dateStr(new Date().toISOString(), 2),
-			isUser.pay_package = "Standart"
+			isShop.paid_subscription = false,
+			isShop.register_data = dateStr(new Date().toISOString(), 1),
+			isShop.date_payment = dateStr(new Date().toISOString(), 1),
+			isShop.end_date_paid_period = dateStr(new Date().toISOString(), 2),
+			isShop.pay_package = "Standart"
+			isShop.created_shop = true
 
-			await isUser.save()
+			await isShop.save()
 
 			res.json({
-				isUser,
+				isShop,
 				message: 'Реєстрацію магазину/меню успішно завершено'
 			})
-		}
+		// }
 
 	} catch (e) {
 		res.json(e, {error: {message: 'Помилка реєстрації магазину/меню'}})

@@ -1,31 +1,13 @@
 import mongoose from "mongoose"
 
-const UserSchema = new mongoose.Schema(
+const ShopSchema = new mongoose.Schema(
 	{
-		email: {
-			type: String,
-			require: true,
-			unique: true
-		},
-		phone: {
-			type: Number,
-			require: true,
-			unique: true
-		},
-		password: {
-			type: String,
-			require: true,
-			min: 6,
-		},
 		shop_name: {
 			type: String,
 			require: true,
 			unique: true,
 			min: 3,
 			max: 65
-		},
-		created_shop: {
-			type: Boolean
 		},
 		image_logo: {
 			type: String,
@@ -129,4 +111,4 @@ const UserSchema = new mongoose.Schema(
 	{timestamps: true}
 )
 
-export default mongoose.model('User', UserSchema)
+export default mongoose.model('Shop', ShopSchema)
