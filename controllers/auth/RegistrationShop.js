@@ -29,7 +29,7 @@ export const registerShop = async (
 				background_color: "",
 				typeQr: ""
 			}
-			isShop.paid_subscription = false,
+			isShop.paid_subscription = true,
 			isShop.register_data = dateStr(new Date().toISOString(), 1),
 			isShop.date_payment = dateStr(new Date().toISOString(), 1),
 			isShop.end_date_paid_period = dateStr(new Date().toISOString(), 2),

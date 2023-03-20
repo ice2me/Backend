@@ -4,5 +4,5 @@ export const dateStr = (date, num) => {
 	const dd = String(new Date(day).getDate()).padStart(2, "0")
 	const yyyy = String(new Date(day).getFullYear())
 
-	return `${mmStr}/${dd}/${yyyy}`
+	return `${dd}/${mmStr}/${yyyy}`
 }
