@@ -10,7 +10,8 @@ export const telegramSendMessage = async (
 	address,
 	comment_message,
 	user_email,
-	shop_id
+	shop_id,
+	res
 ) => {
 	const token = process.env.TELEGRAM_BOT_TOKEN
 	const bot = new TelegramBot(token, {polling: true})
@@ -25,5 +26,5 @@ export const telegramSendMessage = async (
 	});
 
 
-
+	return res.json({message: "Ваше замовлення передано продавцю, він зв'яжеться з вами найближчим часом💙💛"})
 }
