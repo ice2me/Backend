@@ -38,9 +38,9 @@ export const nodeMailer = (
 				<h3>Контакти клієнта <br>
 					Імь'я: <span style="background-color: rgba(247,206,0, 0.3)">${username}</span> <br>
 					Телефон: <span style="background-color: rgba(247,206,0, 0.3)">${phone}</span> <br>
-					Електронна адреса: <span style="background-color: rgba(247,206,0, 0.3)">${user_email}</span> <br>
-					Місто: <span style="background-color: rgba(247,206,0, 0.3)">${city}</span> <br>
-					Адреса: <span style="background-color: rgba(247,206,0, 0.3)">${address}</span> <br>
+					Електронна адреса: <span style="background-color: rgba(247,206,0, 0.3)">${user_email ? user_email : ''}</span> <br>
+					Місто: <span style="background-color: rgba(247,206,0, 0.3)">${city ? city : ''}</span> <br>
+					Адреса: <span style="background-color: rgba(247,206,0, 0.3)">${address ? address : ''}</span> <br>
 				</h3>
 				<p style='width: 300px;'>
 					Коментар: <span style="background-color: rgba(247,206,0, 0.5);">${comment_message}</span> <br>

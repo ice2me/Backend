@@ -2,7 +2,8 @@ import Categories from "../models/Categories.js"
 import Products from "../models/Products.js"
 import User from "../models/User.js"
 import { nodeMailer } from "../utils/nodemailer.js"
-import { nodeMailerWithTotalCost } from "../utils/nodeMailerWithTotalCost.js";
+import { nodeMailerWithTotalCost } from "../utils/nodeMailerWithTotalCost.js"
+import { telegramSendMessage } from "../utils/telegramSendMessage.js";
 
 export const getCategoriesForLink = async (req,
 	res) => {
@@ -105,6 +106,18 @@ export const postBasketFormClient = async (req,
 				comment_message,
 				user_email,
 			})
+			await telegramSendMessage({
+				shop_email,
+				items,
+				phone,
+				username,
+				shop_name,
+				city,
+				address,
+				comment_message,
+				user_email,
+				shop_id
+			})
 
 			res.json({message: "Ваше замовлення передано продавцю, він зв'яжеться з вами найближчим часом💙💛"})
 		} else {
@@ -120,9 +133,25 @@ export const postBasketFormClient = async (req,
 				comment_message,
 				user_email,
 			})
+			await telegramSendMessage({
+				shop_email,
+				items,
+				phone,
+				username,
+				totalAmount,
+				shop_name,
+				city,
+				address,
+				comment_message,
+				user_email,
+				shop_id
+			})
 
 			res.json({message: "Ваше замовлення передано продавцю, він зв'яжеться з вами найближчим часом 💙💛"})
 		}
+
+
+
 	} catch (e) {
 		res.json({error: {message: 'Помилка надсилання форми'}})
 	}

@@ -39,9 +39,9 @@ export const nodeMailerWithTotalCost = (
 				<h3>Client contact / Контакти клієнта <br>
 					Name / Імь'я: <span style="background-color: rgba(247,206,0, 0.3)">${username}</span> <br>
 					Phone / Телефон: <span style="background-color: rgba(247,206,0, 0.3)">${phone}</span> <br>
-					Email / Електронна адреса: <span style="background-color: rgba(247,206,0, 0.3)">${user_email}</span> <br>
-					City / Місто: <span style="background-color: rgba(247,206,0, 0.3)">${city}</span> <br>
-					Address / Адреса: <span style="background-color: rgba(247,206,0, 0.3)">${address}</span> <br>
+					Email / Електронна адреса: <span style="background-color: rgba(247,206,0, 0.3)">${user_email ? user_email : ''}</span> <br>
+					City / Місто: <span style="background-color: rgba(247,206,0, 0.3)">${city ? city : ""}</span> <br>
+					Address / Адреса: <span style="background-color: rgba(247,206,0, 0.3)">${address ? address : ""}</span> <br>
 				</h3>
 				<p style='width: 300px;'>
 					Comment Message / Коментар: <span style="background-color: rgba(247,206,0, 0.5);">${comment_message}</span> <br>

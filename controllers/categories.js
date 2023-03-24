@@ -2,7 +2,7 @@ import Categories from "../models/Categories.js"
 import User from "../models/User.js"
 import Products from "../models/Products.js"
 import { dateStr } from "../utils/dateHelper.js";
-import { compareDate } from "../utils/compareDate.js";
+// import { compareDate } from "../utils/compareDate.js";
 
 export const createCategories = async (req,
 	res) => {
