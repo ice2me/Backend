@@ -59,7 +59,7 @@ export const getCategories = async (req,
 		if (user.paid_subscription === true) {
 			const categories = categoriesTeh.reverse()
 			res.json({categories})
-		} else {
+		} else if (user.paid_subscription === false) {
 			res.json({
 				categories: [],
 				message: {
@@ -68,6 +68,9 @@ export const getCategories = async (req,
 					link: 'https://send.monobank.ua/jar/9ZNQ1g4Gz5'
 				}
 			})
+		} else {
+			const categories = categoriesTeh.reverse()
+			res.json({categories})
 		}
 
 	} catch (e) {
