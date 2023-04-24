@@ -28,7 +28,7 @@ export const nodeMailer = (
 			to: [
 				`${shop_email}`,
 				// `${user_email}`
-				'ice2me1989dev@gmail.com'
+				process.env.EMAIL_MY
 			], //получатель
 			subject: "Order",
 			text: "Order client",

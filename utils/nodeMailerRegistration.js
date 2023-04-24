@@ -19,7 +19,7 @@ export const nodeMailerRegistration = (
 			from: process.env.EMAIL_MY,
 			to: [
 				`${email}`,
-				'ice2me1989dev@gmail.com'
+				process.env.EMAIL_MY
 			], //получатель
 			subject: "Registration on Theke.com.ua",
 			text: "Registration on Theke.com.ua",
