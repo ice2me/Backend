@@ -3,7 +3,6 @@ import Products from "../models/Products.js"
 import User from "../models/User.js"
 import { nodeMailer } from "../utils/nodemailer.js"
 import { nodeMailerWithTotalCost } from "../utils/nodeMailerWithTotalCost.js"
-import { telegramSendMessage } from "../utils/telegramSendMessage.js";
 
 export const getCategoriesForLink = async (req,
 	res) => {
@@ -14,10 +13,25 @@ export const getCategoriesForLink = async (req,
 				return Categories.findById(categories._id)
 			}))
 		const categories = categoriesTeh.reverse()
+
+		const newShop = new Object()
+		newShop._id = shop._id
+		newShop.email = shop.email
+		newShop.image_logo = shop.image_logo
+		newShop.phone = shop.phone
+		newShop.shop_name = shop.shop_name
+		newShop.shop_link = shop.shop_link
+		newShop.socials_links = shop.socials_links
+		newShop.variant_trading = shop.variant_trading
+		newShop.description = shop.description
+		newShop.paid_subscription = shop.paid_subscription
+		newShop.categories =  shop.paid_subscription === true ? shop.categories : []
+
 		if (shop) {
 			res.json({
-				shop: shop,
-				categories: categories
+				shop: newShop,
+				categories: shop.paid_subscription === true ? categories : [],
+				message: shop.paid_subscription === false ? 'На жаль за цим посиланням, магазин тимчасово не доступний, так як не продовжив підписку на платформі... ' : ''
 			})
 		} else {
 			res.redirect('/')
